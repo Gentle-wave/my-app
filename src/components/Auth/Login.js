@@ -1,0 +1,1 @@
+import {} from '../../../public/static/styles.css'
