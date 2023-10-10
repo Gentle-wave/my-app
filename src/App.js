@@ -3,26 +3,79 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Login } from "./Login";
 import { Register } from "./Register";
+import { Dashboard } from './Dashboard'
+import { CreateCompetition } from "./competition";
+import { Vote } from "./vote"
 
-function App() {
-  const [currentForm, setCurrentForm] = useState('login');
 
-  const toggleForm = (formName) => {
-    setCurrentForm(formName);
-  }
+export default function App() {
+  // const [currentForm, setCurrentForm] = useState('Login');
+
+  // const toggleForm = (formName) => {
+  //   setCurrentForm(formName);
+  // }
+
+  const [user, setUser] = useState({
+    firstName: "John", // Replace with the actual user data
+  });
+
+  const [competitions, setCompetitions] = useState([
+    // Replace with an array of ongoing competitions
+    { id: 1, name: "Competition 1" },
+    { id: 2, name: "Competition 2" },
+  ]);
+
+  const [participants, setParticipants] = useState([
+    // Replace with an array of participants for the selected competition
+    { id: 1, name: "Candidate 1" },
+    { id: 2, name: "Candidate 2" },
+  ]);
+
+  const handleCreateCompetition = (competition) => {
+    // Handle creating a new competition and adding it to the list
+    setCompetitions([...competitions, competition]);
+  };
+
+  const handleProfileClick = () => {
+    // Handle clicking on the profile icon (navigate to profile page)
+    // Implement the navigation logic here
+  };
+
+  const handleCreateCompetitionClick = () => {
+    // Handle clicking on the "Create New Competition" button
+    // Implement the navigation logic to the create competition page
+  };
+
+  const handleVote = (candidateName) => {
+    // Handle voting for a candidate and update the participant list or other logic
+    // You can implement the logic to update the vote count or track user votes here
+    console.log(`Voted for ${candidateName}`);
+  };
+
+
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />}>
-            <Route path="register" element={<Register />} />
-          </Route>
-          <Route path="*" element={<Login />} />
+          <Route path="/" element={<Register/>} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login/>} />
+          {/* <Route path="*" element={<noindex />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
 
-export default App;
+
+
+
+{/* <Dashboard
+            user={user}
+            competitions={competitions}
+            onProfileClick={handleProfileClick}
+            onCreateCompetitionClick={handleCreateCompetitionClick}
+            onVote={handleVote}
+          /> */}

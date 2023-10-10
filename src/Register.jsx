@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 export const Register = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [gender, setGender] = useState('')
+    const [gender, setGender] = useState('Male')
+    const navigate = useNavigate(); // Use useNavigate instead of useNavigation
 
+    const navigateToLogin = () => {
+        navigate('/login'); // Use navigate to redirect to the /register route
+    }
     
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
+    }
+    const handleGenderChange = (e) => {
+        setGender(e.target.value); // Update gender when the dropdown value changes
     }
 
     return (
@@ -24,7 +32,7 @@ export const Register = (props) => {
                 <label htmlFor="email">email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
+                <select id="gender" name="gender" required onChange={handleGenderChange} value={gender}>
                     <option value='Male'>Male</option>
                     <option value='Female'>Female</option>
                 </select>
@@ -32,7 +40,7 @@ export const Register = (props) => {
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <button type="submit">Log In</button>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>
+            <button className="link-btn" onClick={navigateToLogin}>Already have an account? Login here.</button>
         </div>
     )
 }

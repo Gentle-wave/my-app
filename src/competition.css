@@ -1,0 +1,57 @@
+/* create-competition.css */
+
+.create-competition {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .create-competition h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: wheat;
+  }
+  
+  .create-competition form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+  }
+  
+  .create-competition label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    font-size: larger;
+    font-weight: bold;
+
+  }
+  
+  .create-competition input,
+  .create-competition textarea,
+  .create-competition select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: black;
+  }
+  
+  .create-competition button {
+    background-color: #7439db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .create-competition button:hover {
+    background-color: #5c2eae;
+  }
+  
