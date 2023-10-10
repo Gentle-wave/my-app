@@ -5,7 +5,8 @@ import { Login } from "./Login";
 import { Register } from "./Register";
 import { Dashboard } from './Dashboard'
 import { CreateCompetition } from "./competition";
-import { Vote } from "./vote"
+import { Vote } from "./vote";
+import {nopage} from "./noPage"
 
 
 export default function App() {
@@ -59,10 +60,18 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Register/>} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="register" element={<Register />} />
           <Route path="login" element={<Login/>} />
-          {/* <Route path="*" element={<noindex />} /> */}
+          <Route path="dashboard" element={<Dashboard
+            user={user}
+            competitions={competitions}
+            onProfileClick={handleProfileClick}
+            onCreateCompetitionClick={handleCreateCompetitionClick}
+            onVote={handleVote}
+          />} />
+          <Route path="register" element={<Register />} />
+          <Route path="participants" element={<Vote participants={participants} onVote={handleVote} />} />
+          <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
+          <Route path="*" element={<nopage/>} />
         </Routes>
       </BrowserRouter>
     </div>
@@ -70,12 +79,5 @@ export default function App() {
 }
 
 
+ 
 
-
-{/* <Dashboard
-            user={user}
-            competitions={competitions}
-            onProfileClick={handleProfileClick}
-            onCreateCompetitionClick={handleCreateCompetitionClick}
-            onVote={handleVote}
-          /> */}
