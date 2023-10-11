@@ -18,6 +18,9 @@ export default function App() {
   //   setCurrentForm(formName);
   // }
 
+  const userId = localStorage.getItem("userId");
+
+
   const [user, setUser] = useState({
     firstName: "John", // Replace with the actual user data
   });

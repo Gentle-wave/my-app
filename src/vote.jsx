@@ -3,6 +3,8 @@ import React, { useState } from "react";
 export const Vote = ({ participants, onVote }) => {
   const [selectedCandidate, setSelectedCandidate] = useState("");
   const [voted, setVoted] = useState(false);
+  const userId = localStorage.getItem("userId");
+
 
   const handleVote = () => {
     // Prevent voting if the user has already voted or no candidate is selected

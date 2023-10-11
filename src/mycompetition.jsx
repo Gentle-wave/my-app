@@ -22,6 +22,8 @@
 import React from "react";
 
 const MyCompetitions = ({ userCompetitions, onDeleteCompetition }) => {
+  const userId = localStorage.getItem("userId");
+
   return (
     <div className="my-competitions">
       <h2>My Competitions</h2>
