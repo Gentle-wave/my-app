@@ -15,16 +15,15 @@ const About = () => {
       <div className="about-section-text-container">
         <p className="primary-subheading">About</p>
         <h1 className="primary-heading">
-          Food Is An Important Part Of A Balanced Diet
+        "Beauty is an Essential Element of a Balanced Lifestyle."
         </h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+        Beauty has the remarkable ability to elevate one's charm, infusing it with a captivating blend of grace, allure, and timeless elegance, leaving a lasting impression that resonates with those who encounter it..
         </p>
-        <p className="primary-text">
+        {/* <p className="primary-text">
           Non tincidunt magna non et elit. Dolor turpis molestie dui magnis
           facilisis at fringilla quam.
-        </p>
+        </p> */}
         <div className="about-buttons-container">
           <button className="secondary-button">Learn More</button>
           <button className="watch-video-button">

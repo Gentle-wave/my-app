@@ -41,7 +41,7 @@
   }
   .primary-button {
     padding: 0.9rem 1.75rem;
-    background-color: white;
+    background-color: rgb(77, 108, 169);
     outline: none;
     border: none;
     border-radius: 5rem;
@@ -49,6 +49,7 @@
     cursor: pointer;
     font-weight: 600;
     transition: 0.2s;
+    text-decoration: #484848;
   }
   .navbar-cart-icon {
     font-size: 1.15rem;
@@ -89,10 +90,17 @@
     /* line-height: 5rem; */
     max-width: 600px;
   }
+
+  .primary-sheading {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color:  #fe9e0d;
+    /* line-height: 5rem; */
+    max-width: 600px;
+  }
   .primary-text {
     font-size: clamp(1rem, 3vw, 1.5rem);
     max-width: 500px;
-    color: #6a6a6a;
+    color: white;
     margin: 1.5rem 0rem;
   }
   .secondary-button {

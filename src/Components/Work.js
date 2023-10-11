@@ -7,18 +7,18 @@ const Work = () => {
   const workInfoData = [
     {
       image: PickMeals,
-      title: "Pick Meals",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et sagittis duis elementum interdum facilisi bibendum.",
+      title: "Free Meals?",
+      text: "Yes, you stand the chance to win a free meal delivered to your door step's when your candidate win",
     },
     {
       image: ChooseMeals,
-      title: "Choose How Often",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et ",
+      title: "Choose your prefered candidate",
+      text: "you have the power to chhose and vote for any candidate of your choice",
     },
     {
       image: DeliveryMeals,
-      title: "Fast Deliveries",
-      text: "Lorem ipsum dolor sit amet consectetur. Maecenas orci et lorem ipsum",
+      title: "Live updates",
+      text: "Your votes counts and are updated in real time ",
     },
   ];
   return (
@@ -27,8 +27,7 @@ const Work = () => {
         <p className="primary-subheading">Work</p>
         <h1 className="primary-heading">How It Works</h1>
         <p className="primary-text">
-          Lorem ipsum dolor sit amet consectetur. Non tincidunt magna non et
-          elit. Dolor turpis molestie dui magnis facilisis at fringilla quam.
+          you can either join an ongoing competition, create your own personal competition or vote for any candidate of your choicein any competition.
         </p>
       </div>
       <div className="work-section-bottom">

@@ -10,7 +10,8 @@ const Footer = () => {
     <div className="footer-wrapper">
       <div className="footer-section-one">
         <div className="footer-logo-container">
-          <img src={Logo} alt="" />
+          {/* <img src={Logo} alt="" /> */}
+          <p className="primary-sheading">Luminance</p>
         </div>
         <div className="footer-icons">
           <BsTwitter />
@@ -30,9 +31,9 @@ const Footer = () => {
         </div>
         <div className="footer-section-columns">
           <span>244-5333-7783</span>
-          <span>hello@food.com</span>
-          <span>press@food.com</span>
-          <span>contact@food.com</span>
+          <span>Luminance@food.com</span>
+          <span>Luminance@food.com</span>
+          <span>Luminance@food.com</span>
         </div>
         <div className="footer-section-columns">
           <span>Terms & Conditions</span>
