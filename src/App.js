@@ -7,6 +7,7 @@ import { Dashboard } from './Dashboard'
 import { CreateCompetition } from "./competition";
 import { Vote } from "./vote";
 import {nopage} from "./noPage"
+import LandingPage from "./homepage"
 
 
 export default function App() {
@@ -59,7 +60,7 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Register/>} />
+          <Route path="/" element={<LandingPage/>} />
           <Route path="login" element={<Login/>} />
           <Route path="dashboard" element={<Dashboard
             user={user}
@@ -71,6 +72,7 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="participants" element={<Vote participants={participants} onVote={handleVote} />} />
           <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
+          <Route path="landingPage" exact component={<LandingPage/>} />
           <Route path="*" element={<nopage/>} />
         </Routes>
       </BrowserRouter>
