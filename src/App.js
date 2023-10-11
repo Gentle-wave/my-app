@@ -8,6 +8,7 @@ import { CreateCompetition } from "./competition";
 import { Vote } from "./vote";
 import {nopage} from "./noPage"
 import LandingPage from "./homepage"
+import MyCompetitions from "./mycompetition"
 
 
 export default function App() {
@@ -26,6 +27,17 @@ export default function App() {
     { id: 1, name: "Competition 1" },
     { id: 2, name: "Competition 2" },
   ]);
+
+  const [userCompetitions, setUserCompetitions] = useState([
+    // Replace with an array of competitions created by the user
+    { id: 1, title: "Competition 1" },
+    { id: 2, title: "Competition 2" },
+  ]);
+
+  const handleDeleteCompetition = (competitionId) => {
+    // Handle deleting a competition by filtering out the selected competition
+    setUserCompetitions(userCompetitions.filter((comp) => comp.id !== competitionId));
+  };
 
   const [participants, setParticipants] = useState([
     // Replace with an array of participants for the selected competition
@@ -60,7 +72,7 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage/>} />
+          <Route path="/" element={<Register/>} />
           <Route path="login" element={<Login/>} />
           <Route path="dashboard" element={<Dashboard
             user={user}
@@ -73,7 +85,8 @@ export default function App() {
           <Route path="participants" element={<Vote participants={participants} onVote={handleVote} />} />
           <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
           <Route path="landingPage" exact component={<LandingPage/>} />
-          <Route path="*" element={<nopage/>} />
+          <Route path="mycompetition" exact component={<MyCompetitions/>} />
+          <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
     </div>
