@@ -53,6 +53,7 @@ const Navbar = () => {
         <a href="">Testimonials</a>
         <a href="">Contact</a>
         <a href="">
+          My competition
           {/* <BsCart2 className="navbar-cart-icon" /> */}
         </a>
         <button className="primary-button">search</button>
