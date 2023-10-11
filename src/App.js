@@ -84,8 +84,8 @@ export default function App() {
           <Route path="register" element={<Register />} />
           <Route path="participants" element={<Vote participants={participants} onVote={handleVote} />} />
           <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
-          <Route path="landingPage" exact component={<LandingPage/>} />
-          <Route path="mycompetition" exact component={<MyCompetitions/>} />
+          <Route path="landingPage" element ={<LandingPage/>} />
+          <Route path="mycompetition" element={<MyCompetitions/>} />
           <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
