@@ -12,13 +12,18 @@ export const Dashboard = ({ user, onProfileClick, onCreateCompetitionClick, onVo
     fetch("https://voting-system-bdvi.onrender.com/api/competitions")
       .then((response) => response.json())
       .then((data) => setCompetitions(data.competitions || [])) // Ensure competitions is an array
-      .then (console.log('success'))
+      .then(console.log('success'))
       .catch((error) => console.error("Error fetching competitions:", error));
   }, []);
 
   const handleCreateCompetitionClick = () => {
     // Navigate to the "createCompetition" page when the button is clicked
     navigate("/createCompetition");
+  };
+
+  const handlejoinCompetition = (competitionId) => {
+    // Navigate to the "joincompetition" page with the competitionId as a parameter
+    navigate(`/joincompetition/${competitionId}`);
   };
 
   return (
@@ -37,7 +42,7 @@ export const Dashboard = ({ user, onProfileClick, onCreateCompetitionClick, onVo
             <p>{competition.title} - {competition.description}</p>
             <p>Start Date: {new Date(competition.startDate).toDateString()}</p>
             <p>Duration: {competition.duration}</p>
-            <button onClick={() => onVote(competition.id)}>Vote</button>
+            <button onClick={() => handlejoinCompetition(competition.id)}>Join Competition</button>
           </div>
         ))}
       </div>

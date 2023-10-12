@@ -9,6 +9,7 @@ import { Vote } from "./vote";
 import {nopage} from "./noPage"
 import LandingPage from "./homepage"
 import MyCompetitions from "./mycompetition"
+import JoinCompetition from "./joincompetition"
 
 
 export default function App() {
@@ -77,7 +78,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Register/>} />
           <Route path="login" element={<Login/>} />
-          <Route path="dashboard" element={<Dashboard
+          <Route path="dashboard/:competitionId" element={<Dashboard
             user={user}
             competitions={competitions}
             onProfileClick={handleProfileClick}
@@ -89,6 +90,7 @@ export default function App() {
           <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
           <Route path="landingPage" element ={<LandingPage/>} />
           <Route path="mycompetition" element={<MyCompetitions/>} />
+          <Route path="joincompetition" element={<JoinCompetition/>} />
           <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>

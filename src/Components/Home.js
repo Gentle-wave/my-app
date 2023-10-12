@@ -1,4 +1,3 @@
-
 import React from "react";
 import BannerBackground from "../Assets/home-banner-background.png";
 import BannerImage from "../Assets/home-banner-image.png";
@@ -12,6 +11,11 @@ const Home = () => {
   const handleJoinCompetition = () => {
     // When the "join a competition" button is clicked, navigate to the Dashboard
     navigate("/dashboard");
+  };
+
+  const handleNavigateToCompetition = () => {
+    // When the "join a competition" button is clicked, navigate to the Dashboard
+    navigate("/mycompetition");
   };
 
   return (
@@ -30,6 +34,9 @@ const Home = () => {
           </p>
           <button className="secondary-button" onClick={handleJoinCompetition}>
             join a competition <FiArrowRight />{" "}
+          </button>
+          <button className="secondary-button" onClick={handleNavigateToCompetition}>
+          My competition <FiArrowRight />{" "}
           </button>
         </div>
         <div className="home-image-section">
