@@ -56,7 +56,7 @@ export const Register = (props) => {
     password: "",
     gender: "Male" // Default gender
   });
-
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {

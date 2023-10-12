@@ -7,6 +7,7 @@ export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,11 +22,13 @@ export const Login = (props) => {
 
       if (response.ok) {
         const data = await response.json();
-        const userId = data.userId; // Assuming the response includes the user's ID
+        const userId = data.user.id; // Assuming the response includes the user's ID
 
         // Save the user's ID locally (e.g., in localStorage)
         localStorage.setItem("userId", userId);
-        toast.success("Competition created successfully!");
+        console.log("User ID saved in localStorage:", userId);
+        toast.success("User Logged in successfully!");
+
 
         // Navigate to the LandingPage or your desired route
         navigate("/landingPage");

@@ -1,31 +1,3 @@
-// import React from "react";
-
-// const MyCompetitions = ({ userCompetitions, onDeleteCompetition }) => {
-//   const userId = localStorage.getItem("userId");
-
-//   return (
-//     <div className="my-competitions">
-//       <h2>My Competitions</h2>
-//       <ul>
-//         {userCompetitions && userCompetitions.length > 0 ? (
-//           userCompetitions.map((competition) => (
-//             <li key={competition.id}>
-//               {competition.title}
-//               <button onClick={() => onDeleteCompetition(competition.id)}>
-//                 Delete
-//               </button>
-//             </li>
-//           ))
-//         ) : (
-//           <p>No competitions created yet.</p>
-//         )}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default MyCompetitions;
-
 import React, { useState, useEffect } from "react";
 
 const MyCompetitions = ({ onDeleteCompetition }) => {
@@ -37,7 +9,8 @@ const MyCompetitions = ({ onDeleteCompetition }) => {
     fetch(`https://voting-system-bdvi.onrender.com/api/competitions/singleusercompetition/${userId}`)
       .then((response) => response.json())
       .then((data) => {
-        setUserCompetitions(data.competitions);
+        setUserCompetitions(data);
+        console.log(data);
       })
       .catch((error) => {
         console.error('Error fetching competitions:', error);
@@ -75,7 +48,8 @@ const MyCompetitions = ({ onDeleteCompetition }) => {
           ))
         ) : (
           <p>No competitions created yet.</p>
-        )}
+        )
+        }
       </ul>
     </div>
   );

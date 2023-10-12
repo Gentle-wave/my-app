@@ -10,7 +10,7 @@ const Home = () => {
 
   const handleJoinCompetition = () => {
     // When the "join a competition" button is clicked, navigate to the Dashboard
-    navigate("/dashboard");
+    navigate("/dashboard/:competitionId");
   };
 
   const handleNavigateToCompetition = () => {
