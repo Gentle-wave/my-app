@@ -33,14 +33,14 @@ export const Login = (props) => {
         // Navigate to the LandingPage or your desired route
         navigate("/landingPage");
       } else {
-        setError("Error loging in. Please try again.");
+        setError("Error loging in. Please check your details and try again..");
         // Handle login failure, e.g., display an error message
         console.error("Login failed");
       }
     } catch (error) {
       console.error("API request error:", error);
       console.alert("Login failed")
-      setError("Error loging in. Please try again." + error);
+      setError("Error loging in. Please check your details and try again." + error);
     }
   };
 

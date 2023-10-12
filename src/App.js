@@ -86,7 +86,7 @@ export default function App() {
           <Route path="landingPage" element ={<LandingPage/>} />
           <Route path="mycompetition" element={<MyCompetitions/>} />
           <Route path="joincompetition/:competitionId" element={<JoinCompetition/>} />
-          <Route path="joincompetition/:competitionId" element={<CompetitionResults />} />
+          <Route path="voteresults/:competitionId" element={<CompetitionResults />} />
           <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>

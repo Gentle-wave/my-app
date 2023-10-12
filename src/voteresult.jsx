@@ -25,7 +25,7 @@ const CompetitionResults = () => {
         <h3>Voters:</h3>
         <ul>
           {voteData.voters.map((voter, index) => (
-            <li key={index}>{voter.name}</li>
+            <li key={index}>{voter.voteesName}</li>
           ))}
         </ul>
       </div>
