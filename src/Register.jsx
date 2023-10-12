@@ -56,7 +56,7 @@ export const Register = (props) => {
     password: "",
     gender: "Male" // Default gender
   });
-
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -83,10 +83,12 @@ export const Register = (props) => {
         navigate("/login");
       } else {
         // Handle registration failure, e.g., display an error message
+        setError("Error Registration failed. Please try again.");
         console.error("Registration failed");
       }
     } catch (error) {
       console.error("API request error:", error);
+      setError("Error Registration failed. Please try again.");
     }
   };
 
