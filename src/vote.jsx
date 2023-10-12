@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {  useParams } from "react-router-dom";
 
-export const Vote = ({ competitionId, onVote }) => {
+export const Vote = ({ onVote }) => {
+  const { competitionId } = useParams();
   const [participants, setParticipants] = useState([]);
   const [selectedCandidate, setSelectedCandidate] = useState("");
   const [voted, setVoted] = useState(false);
   const [error, setError] = useState(null); // Add error state
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     // Fetch the list of participants when the component mounts
@@ -17,13 +20,17 @@ export const Vote = ({ competitionId, onVote }) => {
       })
       .then((data) => {
         setParticipants(data.participants || []);
-        console.log("Participants loaded successfully");
+        console.log('Pariticpants: ', data.participants)
+        // console.log("Participants loaded successfully");
       })
       .catch((error) => {
-        setError("Error fetching participants. Please try again later.");
+        // setError("Error fetching participants. Please try again later.");
         console.error("Error fetching participants:", error);
       });
   }, [competitionId]);
+
+
+  console.log('State Participat: ', participants)
 
   const handleVote = () => {
     // Prevent voting if the user has already voted or no candidate is selected
@@ -31,9 +38,16 @@ export const Vote = ({ competitionId, onVote }) => {
       return;
     }
 
-    // Send a request to vote for the selected candidate
-    fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${competitionId}/vote/${selectedCandidate}`, {
+    const requestBody = {
+      voteesName: selectedCandidate,
+    };
+  
+    fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${competitionId}/vote/${userId}`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestBody),
     })
       .then((response) => {
         if (!response.ok) {
@@ -45,6 +59,8 @@ export const Vote = ({ competitionId, onVote }) => {
         // Update UI to indicate successful vote
         setVoted(true);
         console.log("Vote recorded successfully");
+        setError("congratulations, your vote has counted successfully");
+        setSelectedCandidate("");
       })
       .catch((error) => {
         setError("Error recording vote. Please try again later.");
@@ -60,8 +76,8 @@ export const Vote = ({ competitionId, onVote }) => {
       <div className="candidate-list">
         <h3>Participants:</h3>
         <ul>
-          {participants.map((participant) => (
-            <li key={participant.id}>{participant.name}</li>
+          {participants.map((participant, index) => (
+            <li key={index}>{participant.userName}</li>
           ))}
         </ul>
       </div>

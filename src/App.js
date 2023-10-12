@@ -10,6 +10,7 @@ import {nopage} from "./noPage"
 import LandingPage from "./homepage"
 import MyCompetitions from "./mycompetition"
 import JoinCompetition from "./joincompetition"
+import CompetitionResults from "./voteresult"
 
 
 export default function App() {
@@ -55,18 +56,12 @@ export default function App() {
   };
 
   const handleProfileClick = () => {
-    // Handle clicking on the profile icon (navigate to profile page)
-    // Implement the navigation logic here
   };
 
   const handleCreateCompetitionClick = () => {
-    // Handle clicking on the "Create New Competition" button
-    // Implement the navigation logic to the create competition page
   };
 
   const handleVote = (candidateName) => {
-    // Handle voting for a candidate and update the participant list or other logic
-    // You can implement the logic to update the vote count or track user votes here
     console.log(`Voted for ${candidateName}`);
   };
 
@@ -86,11 +81,12 @@ export default function App() {
             onVote={handleVote}
           />} />
           <Route path="register" element={<Register />} />
-          <Route path="participants" element={<Vote participants={participants} onVote={handleVote} />} />
+          <Route path="participants/:competitionId" element={<Vote participants={participants} onVote={handleVote} />} />
           <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
           <Route path="landingPage" element ={<LandingPage/>} />
           <Route path="mycompetition" element={<MyCompetitions/>} />
-          <Route path="joincompetition" element={<JoinCompetition/>} />
+          <Route path="joincompetition/:competitionId" element={<JoinCompetition/>} />
+          <Route path="joincompetition/:competitionId" element={<CompetitionResults />} />
           <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>

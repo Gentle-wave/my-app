@@ -35,6 +35,7 @@ const Home = () => {
           <button className="secondary-button" onClick={handleJoinCompetition}>
             join a competition <FiArrowRight />{" "}
           </button>
+          <br></br>
           <button className="secondary-button" onClick={handleNavigateToCompetition}>
           My competition <FiArrowRight />{" "}
           </button>

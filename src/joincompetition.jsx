@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const JoinCompetition = ({ competitionId }) => {
+const JoinCompetition = () => {
+  const { competitionId } = useParams();
   const userId = localStorage.getItem("userId");
   const [userName, setUserName] = useState("");
   const [message, setMessage] = useState(null);
@@ -21,17 +22,19 @@ const JoinCompetition = ({ competitionId }) => {
       .then((data) => {
         if (data.message) {
           setMessage(data.message);
+          setUserName("");
         }
+        setMessage('congratulations you have joined the competition' + data.message);
       })
       .catch((error) => {
         console.error('Error joining competition:', error);
-        setMessage('Error joining competition');
+        // setMessage('Error joining competition');
       });
   };
 
   return (
     <div className="join-competition">
-      <h2>Join Competition</h2>
+      <h2>Join Competition {competitionId}</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="userName">Your Name</label>
         <input

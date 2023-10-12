@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyCompetitions = ({ onDeleteCompetition }) => {
   const userId = localStorage.getItem("userId");
@@ -41,6 +42,9 @@ const MyCompetitions = ({ onDeleteCompetition }) => {
           userCompetitions.map((competition) => (
             <li key={competition.id}>
               {competition.title}
+              <br></br>
+              <br></br>
+              {competition.description}
               <button onClick={() => handleDeleteCompetition(competition.id)}>
                 Delete
               </button>
