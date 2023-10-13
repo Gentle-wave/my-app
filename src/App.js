@@ -11,61 +11,23 @@ import LandingPage from "./homepage"
 import MyCompetitions from "./mycompetition"
 import JoinCompetition from "./joincompetition"
 import CompetitionResults from "./voteresult"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function App() {
-  // const [currentForm, setCurrentForm] = useState('Login');
-
-  // const toggleForm = (formName) => {
-  //   setCurrentForm(formName);
-  // }
 
   const userId = localStorage.getItem("userId");
-
-
-  const [user, setUser] = useState({
-    firstName: "John", // Replace with the actual user data
-  });
-
-  const [competitions, setCompetitions] = useState([
-    // Replace with an array of ongoing competitions
-    { id: 1, name: "Competition 1" },
-    { id: 2, name: "Competition 2" },
-  ]);
-
-  const [userCompetitions, setUserCompetitions] = useState([
-    // Replace with an array of competitions created by the user
-    { id: 1, title: "Competition 1" },
-    { id: 2, title: "Competition 2" },
-  ]);
-
-  const handleDeleteCompetition = (competitionId) => {
-    // Handle deleting a competition by filtering out the selected competition
-    setUserCompetitions(userCompetitions.filter((comp) => comp.id !== competitionId));
-  };
-
-  const [participants, setParticipants] = useState([
-    // Replace with an array of participants for the selected competition
-    { id: 1, name: "Candidate 1" },
-    { id: 2, name: "Candidate 2" },
-  ]);
-
-  const handleCreateCompetition = (competition) => {
-    // Handle creating a new competition and adding it to the list
-    setCompetitions([...competitions, competition]);
-  };
-
-  const handleProfileClick = () => {
-  };
-
-  const handleCreateCompetitionClick = () => {
-  };
-
-  const handleVote = (candidateName) => {
-    console.log(`Voted for ${candidateName}`);
-  };
-
-
+  const notify = () => toast.success('🦄 Wow so easy!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    })
 
   return (
     <div className="App">
@@ -74,15 +36,15 @@ export default function App() {
           <Route path="/" element={<Register/>} />
           <Route path="login" element={<Login/>} />
           <Route path="dashboard/:competitionId" element={<Dashboard
-            user={user}
-            competitions={competitions}
-            onProfileClick={handleProfileClick}
-            onCreateCompetitionClick={handleCreateCompetitionClick}
-            onVote={handleVote}
+            // user={user}
+            // competitions={competitions}
+            // onProfileClick={handleProfileClick}
+            // onCreateCompetitionClick={handleCreateCompetitionClick}
+            // onVote={handleVote}
           />} />
           <Route path="register" element={<Register />} />
-          <Route path="participants/:competitionId" element={<Vote participants={participants} onVote={handleVote} />} />
-          <Route path="createCompetition" element={<CreateCompetition onCreateCompetition={handleCreateCompetition} />} />
+          <Route path="participants/:competitionId" element={<Vote />} />
+          <Route path="createCompetition" element={<CreateCompetition />} />
           <Route path="landingPage" element ={<LandingPage/>} />
           <Route path="mycompetition" element={<MyCompetitions/>} />
           <Route path="joincompetition/:competitionId" element={<JoinCompetition/>} />
@@ -90,6 +52,7 @@ export default function App() {
           <Route path="*" element={<LandingPage/>} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }

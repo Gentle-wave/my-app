@@ -1,13 +1,35 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify"; // Import toast from react-toastify
-import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = (props) => {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+
+  const notify = () => toast.success('User Logged in successfully!', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  })
+
+  const errornotify = () => toast.error('Error loging in. Please check your details and try again..', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+    });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,20 +49,19 @@ export const Login = (props) => {
         // Save the user's ID locally (e.g., in localStorage)
         localStorage.setItem("userId", userId);
         console.log("User ID saved in localStorage:", userId);
-        toast.success("User Logged in successfully!");
+        notify();
 
 
         // Navigate to the LandingPage or your desired route
         navigate("/landingPage");
       } else {
-        setError("Error loging in. Please check your details and try again..");
         // Handle login failure, e.g., display an error message
         console.error("Login failed");
+        errornotify();
       }
     } catch (error) {
       console.error("API request error:", error);
-      console.alert("Login failed")
-      setError("Error loging in. Please check your details and try again." + error);
+      setError("oops! An error occured from the server, please try again" + error);
     }
   };
 
@@ -75,6 +96,18 @@ export const Login = (props) => {
       <button className="link-btn" onClick={navigateToRegister}>
         Don't have an account? Register here.
       </button>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./competition.css";
-import { toast } from "react-toastify"; // Import toast from react-toastify
+import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
 export const CreateCompetition = ({ onCreateCompetition }) => {
@@ -10,6 +10,63 @@ export const CreateCompetition = ({ onCreateCompetition }) => {
   const [startDate, setStartDate] = useState("");
   const [duration, setDuration] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const notify = () => toast.success('Competition created successfully!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+  
+    const errornotify = () => toast.error('Failed to create competition. Please try again.', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
+    // Create a competition object with the input values
+    const competitionData = {
+      title,
+      description,
+      startDate,
+      duration,
+    };
+
+    // Make a POST request to the API to create the competition
+    fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${userId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(competitionData),
+    })
+      .then((response) => response.json())
+      .then((createdCompetition) => {
+        // Pass the created competition to the parent component to handle
+        // onCreateCompetition(createdCompetition);
+        notify();
+        console.log("competition sucessfully created")
+
+        setTitle("");
+        setDescription("");
+        setStartDate("");
+        setDuration("");
+      })
+      .catch((error) => {
+        console.error("Error creating competition: ", error);
+        errornotify();
+      });
+  };
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   // Create a competition object with the input values
@@ -33,7 +90,13 @@ export const CreateCompetition = ({ onCreateCompetition }) => {
   //       // Pass the created competition to the parent component to handle
   //       onCreateCompetition(createdCompetition);
   //       toast.success("Competition created successfully!");
-  //       console.log("competition sucessfully created")
+  //       console.log("Competition successfully created");
+
+  //       // Clear the input fields
+  //       setTitle("");
+  //       setDescription("");
+  //       setStartDate("");
+  //       setDuration("");
   //     })
   //     .catch((error) => {
   //       console.error("Error creating competition: ", error);
@@ -41,44 +104,7 @@ export const CreateCompetition = ({ onCreateCompetition }) => {
   //       toast.error("Failed to create competition. Please try again.");
   //     });
   // };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Create a competition object with the input values
-    const competitionData = {
-      title,
-      description,
-      startDate,
-      duration,
-    };
-  
-    // Make a POST request to the API to create the competition
-    fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${userId}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(competitionData),
-    })
-      .then((response) => response.json())
-      .then((createdCompetition) => {
-        // Pass the created competition to the parent component to handle
-        onCreateCompetition(createdCompetition);
-        toast.success("Competition created successfully!");
-        console.log("Competition successfully created");
-  
-        // Clear the input fields
-        setTitle("");
-        setDescription("");
-        setStartDate("");
-        setDuration("");
-      })
-      .catch((error) => {
-        console.error("Error creating competition: ", error);
-        // Show an error notification
-        toast.error("Failed to create competition. Please try again.");
-      });
-  };
-  
+
 
   return (
     <div className="create-competition">
@@ -123,6 +149,18 @@ export const CreateCompetition = ({ onCreateCompetition }) => {
 
         <button type="submit">Create Competition</button>
       </form>
+      <ToastContainer
+position="top-center"
+autoClose={5000}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="colored"
+/>
     </div>
   );
 };
