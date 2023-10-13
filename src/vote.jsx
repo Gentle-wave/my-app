@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export const Vote = ({ onVote }) => {
   const { competitionId } = useParams();
@@ -33,6 +36,27 @@ export const Vote = ({ onVote }) => {
   console.log('State Participat: ', participants)
 
   const handleVote = () => {
+    const notify = () => toast.success('Hurray! your vote has been recorded successfully', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+  
+    const errornotify = () => toast.error('oops! An error occured while taking in vote or you already voted in this competition', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
     // Prevent voting if the user has already voted or no candidate is selected
     if (voted || !selectedCandidate) {
       return;
@@ -41,7 +65,7 @@ export const Vote = ({ onVote }) => {
     const requestBody = {
       voteesName: selectedCandidate,
     };
-  
+
     fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${competitionId}/vote/${userId}`, {
       method: "POST",
       headers: {
@@ -59,11 +83,11 @@ export const Vote = ({ onVote }) => {
         // Update UI to indicate successful vote
         setVoted(true);
         console.log("Vote recorded successfully");
-        setError("congratulations, your vote has counted successfully");
+        notify();
         setSelectedCandidate("");
       })
       .catch((error) => {
-        setError("Error recording vote. Please try again later.");
+        errornotify();
         console.error("Error recording vote:", error);
       });
   };
@@ -94,8 +118,18 @@ export const Vote = ({ onVote }) => {
       <button onClick={handleVote} disabled={voted}>
         {voted ? "Voted" : "Vote"}
       </button>
-
-      {error && <p className="error-message">{error}</p>}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };

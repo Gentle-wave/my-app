@@ -1,52 +1,7 @@
-// import React, { useState } from "react";
-// import { useNavigate } from 'react-router-dom';
-
-// export const Register = (props) => {
-//     const [email, setEmail] = useState('');
-//     const [pass, setPass] = useState('');
-//     const [firstName, setFirstName] = useState('');
-//     const [lastName, setLastName] = useState('');
-//     const [gender, setGender] = useState('Male')
-//     const navigate = useNavigate(); // Use useNavigate instead of useNavigation
-
-//     const navigateToLogin = () => {
-//         navigate('/login'); // Use navigate to redirect to the /register route
-//     }
-    
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         console.log(email);
-//     }
-//     const handleGenderChange = (e) => {
-//         setGender(e.target.value); // Update gender when the dropdown value changes
-//     }
-
-//     return (
-//         <div className="auth-form-container">
-//             <h2>Register</h2>
-//             <form className="register-form" onSubmit={handleSubmit}>
-//                 <label htmlFor="firstName">First Name</label>
-//                 <input value={firstName} name="firstName" onChange={(e) => setFirstName(e.target.value)} id="firstName" placeholder="First Name" />
-//                 <label htmlFor="lastName">Last Name</label>
-//                 <input value={lastName} name="lastName" onChange={(e) => setLastName(e.target.value)} id="lastName" placeholder="Last Name" />
-//                 <label htmlFor="email">email</label>
-//                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
-//                 <label for="gender">Gender</label>
-//                 <select id="gender" name="gender" required onChange={handleGenderChange} value={gender}>
-//                     <option value='Male'>Male</option>
-//                     <option value='Female'>Female</option>
-//                 </select>
-//                 <label htmlFor="password">password</label>
-//                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-//                 <button type="submit">Log In</button>
-//             </form>
-//             <button className="link-btn" onClick={navigateToLogin}>Already have an account? Login here.</button>
-//         </div>
-//     )
-// }
-
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Register = (props) => {
   const [user, setUser] = useState({
@@ -66,6 +21,27 @@ export const Register = (props) => {
 
   const handleRegistration = async (e) => {
     e.preventDefault();
+    const notify = () => toast.success('hurray User registered successfully!', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+    })
+  
+    const errornotify = () => toast.error('oops! An error occured during registration, please try again later', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      });
     try {
       const req = await fetch("https://voting-system-bdvi.onrender.com/api/user/signup", {
         method: "POST",
@@ -80,15 +56,16 @@ export const Register = (props) => {
       if (response.message === 'User created successfully') {
         // Registration was successful, navigate to the login screen
         console.log('success')
+        notify();
         navigate("/login");
       } else {
         // Handle registration failure, e.g., display an error message
-        setError("Error Registration failed. Please try again.");
+        errornotify();
         console.error("Registration failed");
       }
     } catch (error) {
       console.error("API request error:", error);
-      setError("Error Registration failed. Please try again.");
+      errornotify();
     }
   };
 
@@ -153,6 +130,18 @@ export const Register = (props) => {
       <button className="link-btn" onClick={() => navigate('/login')}>
         Already have an account? Login here.
       </button>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </div>
   );
 };
