@@ -67,43 +67,6 @@ export const CreateCompetition = ({ onCreateCompetition }) => {
         errornotify();
       });
   };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Create a competition object with the input values
-  //   const competitionData = {
-  //     title,
-  //     description,
-  //     startDate,
-  //     duration,
-  //   };
-
-  //   // Make a POST request to the API to create the competition
-  //   fetch(`https://voting-system-bdvi.onrender.com/api/competitions/${userId}`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(competitionData),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((createdCompetition) => {
-  //       // Pass the created competition to the parent component to handle
-  //       onCreateCompetition(createdCompetition);
-  //       toast.success("Competition created successfully!");
-  //       console.log("Competition successfully created");
-
-  //       // Clear the input fields
-  //       setTitle("");
-  //       setDescription("");
-  //       setStartDate("");
-  //       setDuration("");
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error creating competition: ", error);
-  //       // Show an error notification
-  //       toast.error("Failed to create competition. Please try again.");
-  //     });
-  // };
 
 
   return (
